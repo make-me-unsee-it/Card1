@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class ATM {
     protected Card currentCard;
+    // special class for Card class
 
     public ATM(Card currentCard) {
         this.currentCard = currentCard;

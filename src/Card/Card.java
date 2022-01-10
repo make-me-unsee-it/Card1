@@ -7,6 +7,8 @@ abstract public class Card {
     protected String cardHolder;
     protected BigDecimal accountBalance;
 
+    // this class is abstract
+
     Card(String cardHolder) {
         this.cardHolder = cardHolder;
         this.accountBalance = BigDecimal.ZERO;

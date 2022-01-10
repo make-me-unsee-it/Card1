@@ -3,6 +3,9 @@ package Card;
 import java.math.BigDecimal;
 
 public class CreditCard extends Card {
+
+    // credit card implements class Card
+
     CreditCard(String cardholder) {
         super(cardholder);
     }
