@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.*;
-
 public class DebitCardTest {
     private Card client;
     private Card clientClone;
@@ -79,14 +77,17 @@ public class DebitCardTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test(expected = InsufficientFundsException.class)
+    public void withdrawFromCardBalance_InsufficientFundsException() throws InsufficientFundsException {
+        BigDecimal withdraw = new BigDecimal("5000");
+        client.withdrawFromCardBalance(withdraw);
+    }
+
     @Test
     public void withdrawFromCardBalance_NO_NULL() throws InsufficientFundsException {
-        BigDecimal withdraw = new BigDecimal("1000");
+        BigDecimal withdraw = new BigDecimal("5000");
         client.withdrawFromCardBalance(withdraw);
         BigDecimal expected = client.accountBalance;
         Assert.assertNotNull(expected);
     }
-
-    // no unit test for withdrawFromCardBalance() if throw InsufficientFundsException
-    // cause don't understand how
 }

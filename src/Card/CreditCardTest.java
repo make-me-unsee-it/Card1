@@ -7,8 +7,6 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-import static org.junit.Assert.*;
-
 public class CreditCardTest {
     private Card client;
     private Card clientClone;
