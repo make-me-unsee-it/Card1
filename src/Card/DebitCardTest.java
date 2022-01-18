@@ -24,20 +24,20 @@ public class DebitCardTest {
     }
 
     @Test
-    public void getCardBalance() {
+    public void testGetCardBalance() {
         BigDecimal expected = client.getCardBalance();
         BigDecimal actual = new BigDecimal("2000");
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void getCardBalance_NO_NULL() {
+    public void testGetCardBalance_NO_NULL() {
         BigDecimal expected = client.getCardBalance();
         Assert.assertNotNull(expected);
     }
 
     @Test
-    public void addCardBalance() {
+    public void testAddCardBalance() {
         BigDecimal money = new BigDecimal("2000");
         client.addCardBalance(money);
         BigDecimal expected = client.getCardBalance();
@@ -46,7 +46,7 @@ public class DebitCardTest {
     }
 
     @Test
-    public void addCardBalance_NO_NULL() {
+    public void testAddCardBalance_NO_NULL() {
         BigDecimal money = new BigDecimal("2000");
         client.addCardBalance(money);
         BigDecimal expected = client.getCardBalance();
@@ -54,7 +54,7 @@ public class DebitCardTest {
     }
 
     @Test
-    public void getCardBalanceByExchangeRate() {
+    public void testGetCardBalanceByExchangeRate() {
         String exchangeRate = "1.56";
         BigDecimal expected = client.getCardBalanceByExchangeRate(exchangeRate);
         BigDecimal actual = client.accountBalance.multiply(new BigDecimal(exchangeRate));
@@ -62,14 +62,14 @@ public class DebitCardTest {
     }
 
     @Test
-    public void getCardBalanceByExchangeRate_NO_NULL() {
+    public void testGetCardBalanceByExchangeRate_NO_NULL() {
         String exchangeRate = "1.56";
         BigDecimal expected = client.getCardBalanceByExchangeRate(exchangeRate);
         Assert.assertNotNull(expected);
     }
 
     @Test
-    public void withdrawFromCardBalance() throws InsufficientFundsException {
+    public void testWithdrawFromCardBalance() throws InsufficientFundsException {
         BigDecimal withdraw = new BigDecimal("1000");
         client.withdrawFromCardBalance(withdraw);
         BigDecimal expected = client.accountBalance;
@@ -78,13 +78,13 @@ public class DebitCardTest {
     }
 
     @Test(expected = InsufficientFundsException.class)
-    public void withdrawFromCardBalance_InsufficientFundsException() throws InsufficientFundsException {
+    public void testWithdrawFromCardBalance_InsufficientFundsException() throws InsufficientFundsException {
         BigDecimal withdraw = new BigDecimal("5000");
         client.withdrawFromCardBalance(withdraw);
     }
 
     @Test
-    public void withdrawFromCardBalance_NO_NULL() throws InsufficientFundsException {
+    public void testWithdrawFromCardBalance_NO_NULL() throws InsufficientFundsException {
         BigDecimal withdraw = new BigDecimal("5000");
         client.withdrawFromCardBalance(withdraw);
         BigDecimal expected = client.accountBalance;

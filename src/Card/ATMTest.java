@@ -30,7 +30,7 @@ public class ATMTest {
     }
 
     @Test
-    public void depositOperation() {
+    public void testDepositOperation() {
         BigDecimal money = new BigDecimal("2000");
         atm.depositOperation(money);
         BigDecimal expected = client.accountBalance;
@@ -39,7 +39,7 @@ public class ATMTest {
     }
 
     @Test
-    public void depositOperation_NO_NULL() {
+    public void testDepositOperation_NO_NULL() {
         BigDecimal money = new BigDecimal("2000");
         atm.depositOperation(money);
         BigDecimal expected = client.accountBalance;
@@ -47,7 +47,7 @@ public class ATMTest {
     }
 
     @Test
-    public void withdrawOperation() {
+    public void testWithdrawOperation() {
         BigDecimal money = new BigDecimal("2000");
         atm.withdrawOperation(money);
         BigDecimal expected = client.accountBalance;
@@ -56,13 +56,13 @@ public class ATMTest {
     }
 
     @Test(expected = InsufficientFundsException.class)      // this test isn't working
-    public void withdrawOperation_InsufficientFundsException() {
+    public void testWithdrawOperation_InsufficientFundsException() {
         BigDecimal money = new BigDecimal("5000");
             atm2.withdrawOperation(money);
         }
 
     @Test
-    public void withdrawOperation_NO_NULL() {
+    public void testWithdrawOperation_NO_NULL() {
         BigDecimal money = new BigDecimal("2000");
         atm.withdrawOperation(money);
         BigDecimal expected = client.accountBalance;
