@@ -1,5 +1,10 @@
-package Card;
+package Card.tests;
 
+import Card.Card;
+import Card.ATM;
+import Card.CreditCard;
+import Card.DebitCard;
+import Card.exception.InsufficientFundsException;
 import org.junit.*;
 
 import java.math.BigDecimal;

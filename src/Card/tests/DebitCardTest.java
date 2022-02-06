@@ -1,5 +1,8 @@
-package Card;
+package Card.tests;
 
+import Card.Card;
+import Card.DebitCard;
+import Card.exception.InsufficientFundsException;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -7,14 +10,14 @@ import org.junit.Test;
 
 import java.math.BigDecimal;
 
-public class CreditCardTest {
+public class DebitCardTest {
     private Card client;
     private Card clientClone;
 
     @Before
     public void setUp() {
-        client = new CreditCard("VASILIY", "2000");
-        clientClone = new CreditCard("VASILIY", "2000");
+        client = new DebitCard("MICHAIL", "2000");
+        clientClone = new DebitCard("MICHAIL", "2000");
     }
 
     @After
@@ -70,11 +73,17 @@ public class CreditCardTest {
 
     @Test
     public void testWithdrawFromCardBalance() throws InsufficientFundsException {
-        BigDecimal withdraw = new BigDecimal("5000");
+        BigDecimal withdraw = new BigDecimal("1000");
         client.withdrawFromCardBalance(withdraw);
         BigDecimal expected = client.accountBalance;
         BigDecimal actual = clientClone.accountBalance.subtract(withdraw);
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test(expected = InsufficientFundsException.class)
+    public void testWithdrawFromCardBalance_InsufficientFundsException() throws InsufficientFundsException {
+        BigDecimal withdraw = new BigDecimal("5000");
+        client.withdrawFromCardBalance(withdraw);
     }
 
     @Test

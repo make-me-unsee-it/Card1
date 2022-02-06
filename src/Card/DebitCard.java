@@ -1,5 +1,7 @@
 package Card;
 
+import Card.exception.InsufficientFundsException;
+
 import java.math.BigDecimal;
 
 public class DebitCard extends Card {
@@ -8,12 +10,12 @@ public class DebitCard extends Card {
         super(cardholder);
     }
 
-    DebitCard(String cardholder, String accountBalance) {
+    public DebitCard(String cardholder, String accountBalance) {
         super(cardholder, accountBalance);
     }
 
     @Override
-    void withdrawFromCardBalance(BigDecimal withdraw) throws InsufficientFundsException {
+    public void withdrawFromCardBalance(BigDecimal withdraw) throws InsufficientFundsException {
         if (accountBalance.compareTo(withdraw) >= 0) accountBalance = accountBalance.subtract(withdraw);
         else {
             throw new InsufficientFundsException("Недостаточно средств!");
