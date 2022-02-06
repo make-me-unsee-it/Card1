@@ -1,5 +1,7 @@
 package Card;
 
+import Card.exception.InsufficientFundsException;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -13,11 +15,11 @@ public class ATM {
     public ATM() {
     }
 
-    void depositOperation(BigDecimal add) {
+    public void depositOperation(BigDecimal add) {
         currentCard.addCardBalance(add);
     }
 
-    void withdrawOperation(BigDecimal withdraw) {
+    public void withdrawOperation(BigDecimal withdraw) {
         try {
             currentCard.withdrawFromCardBalance(withdraw);
         } catch (InsufficientFundsException ex) {

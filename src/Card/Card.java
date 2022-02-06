@@ -1,11 +1,15 @@
 package Card;
 
+import Card.exception.InsufficientFundsException;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
 abstract public class Card {
     protected String cardHolder;
-    protected BigDecimal accountBalance;
+    public BigDecimal accountBalance;
+
+    // this class is abstract
 
     Card(String cardHolder) {
         this.cardHolder = cardHolder;
@@ -17,17 +21,17 @@ abstract public class Card {
         this.accountBalance = new BigDecimal(accountBalance);
     }
 
-    BigDecimal getCardBalance() {
+    public BigDecimal getCardBalance() {
         return accountBalance;
     }
 
-    void addCardBalance(BigDecimal add) {
+    public void addCardBalance(BigDecimal add) {
         accountBalance = accountBalance.add(add);
     }
 
-    abstract void withdrawFromCardBalance(BigDecimal withdraw) throws InsufficientFundsException;
+    public abstract void withdrawFromCardBalance(BigDecimal withdraw) throws InsufficientFundsException;
 
-    BigDecimal getCardBalanceByExchangeRate(String exchangeRate) {
+    public BigDecimal getCardBalanceByExchangeRate(String exchangeRate) {
         return accountBalance.multiply(new BigDecimal(exchangeRate));
     }
 
